@@ -100,10 +100,10 @@ Structure for Currency Information Object:
    ```
 2) Read iso4217.json into Currency class 
 3) Add {```currency: string```} field to AB global settings as the base budget currency.  Add currency selection to Settings page for a one-time setting of currency.
-   > [!NOTE]
-   > Changing a base currency would require a conversion to the new currency and is beyond the current scope of the project. This may be a future feature, but not initial.
-4) Convert AB's current fixed minor units to minor unit based on selected currency.
-5) Possibly add option to view currency symbols.
+> [!WARNING]
+> Changing a base currency would require a conversion to the new currency and is beyond the current scope of the project. This may be a future feature, but not initial.  Once the base currency is set, the settings should be grayed out and only display the base currency.
+5) Convert AB's current fixed minor units to minor unit based on selected currency.
+6) Possibly add option to view currency symbols.
 
 [Discord Discussion](https://discord.com/channels/937901803608096828/1224674202083393597/1290451173433675889)
 
