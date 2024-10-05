@@ -42,6 +42,8 @@ The FX Rate Page should list the FX rates by date and be able to sort/filter by 
 | 09/15/2025 |   EUR    | Regular Cash |  1.1012   |
 | 09/10/2024 |   AUD    | Travel Cash  |  0.674169 |
 
+
+<br/><br/>
 ## Next Steps
 ### Step 1 - Add Currency Support
 
