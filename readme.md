@@ -38,7 +38,7 @@ Base budget currency code should be displayed in the account header.  The only o
 
 #### Transactions
 Add column for either "Exchange Rate" or "FX".<br/>
-If there is an exchange rate then the rate would be listed along with the two amounts.  The two amounts should show the currencies.<br/>
+If there is an exchange rate then the rate would be listed along with the two amounts.  The two amounts should show the currencies.  And the FX amount would need a currency selection box unless it is a transfer.<br/>
 If there is no exchange rate then an icon can be displayed to be able to convert the transaction to a FX transaction.  This would be usefull for the one-off transactions (buying food in Australia with a US credit/debit card).  Both of the currencies could be listed:  FX currency from POS and account currency from the credit/debit card statement.
 
 For useage, see [Account Page (non base budget account) - Transactions](#transactions-1)
