@@ -5,20 +5,54 @@ Notes and Discussion points for adding Multi-Currency to Actual Budget
 
 ## User Interface
 
+> [!NOTE]  
+> The images below are ideas and not the final layout/design.
+
+### Creating a New Budget
+Currently, when creating a new budget, no questions are asked.  A new budget file is created and it is up to the user to find and change settings or rename the budget file.  Since it would be better to set the currency before the budget file is created I would suggest a "New Budget" popup be created similar to the "Add Account" popup.  This "New Budget" popup would have the ability to set the budget name, base currency, and a few setting such as formatting.
+
+### Creating New Account
+Add "Currency" dropdown to Create Account dialog.  The currency should default to the base budget currency.  Once created, the account currency will not be able to be changed.
+
+![Create New Account](assets/create-account.jpg)
+
 ### Settings Page
-- Todo
+Add Currency selection to the Formatting section of the settings page.
+
+![Settings - No currency selected](assets/settings-default.jpg)
+
+If transitioning a previous budget, currency will be shown "default", "unknown", "not set", or something similar.
+
+
+![Settings - USD selected](assets/settings-usd.jpg)
+
+Once a currency is selected, the currency type should display, but should NOT be able to be changed.
+
+> [!NOTE]  
+> In the future, it may be possible to change the budget currency from the settings page and have each account keep it's own account currency.  This would allow for keeping the same budget file while being able to budget in different currencies at different times.
 
 ### Account Page (base budget accounts)
 Base budget currency code should be displayed in the account header.  The only other change would be to individual transactions.
+
+![base currency account](assets/account-base-currency.jpg)
+
 #### Transactions
-- Todo
+Add column for either "Exchange Rate" or "FX".<br/>
+If there is an exchange rate then the rate would be listed along with the two amounts.  The two amounts should show the currencies.<br/>
+If there is no exchange rate then an icon can be displayed to be able to convert the transaction to a FX transaction.  This would be usefull for the one-off transactions (buying food in Australia with a US credit/debit card).  Both of the currencies could be listed:  FX currency from POS and account currency from the credit/debit card statement.
+
+For useage, see [Account Page (non base budget account) - Transactions](#transactions-1)
 
 ### Account Page (non base budget accounts)
-- Todo
-#### Header
-- Todo
-#### Transaction
-- Todo
+The account currency should be displayed in the account header.  The account value should be in the account currency with an option to display the base currency.
+
+![other currency account](assets/account-other-currency.jpg)
+
+#### Transactions
+Adding a transaction will default to the exchange rate set to the last know exchange rate for that account.  The user can adjust the exchange rate.  If the user does change the exchange rate a popup should be displayed asking if this exchange rate should be added to the exchange rate table.
+
+The user would then enter the transaction amount in the account currency and the base currency would auto calculate from the exchange rate.  If the base currency amount is changed then the exchange rate would be calculated from the account currency and the base currency.<br/>
+Account currency should never be auto calculated.
 
 ### Sidebar
 Add new button titled 'FX Rates' in the More section with Payees and Rules.<br/>
@@ -35,13 +69,15 @@ Account Groups (For budget and Off Budget) will keep the same base currency tota
 ### FX Rate Page (new page)
 The FX Rate Page should list the FX rates by date and be able to sort/filter by date, currency, account, or rate.  This will be a new page and be in the same group as Payees and Rules.
 
-|    Date    | Currency |   Account    |   Rate    |
-| ---------- | -------- | ------------ | --------- |
-| 10/01/2024 |   EUR    | Regular Cash |  1.1076   |
-| 09/30/2024 |   AUD    | Travel Cash  |  0.693083 |
-| 09/15/2025 |   EUR    | Regular Cash |  1.1012   |
-| 09/10/2024 |   AUD    | Travel Cash  |  0.674169 |
+|    Date    | Currency |   Account    |   Rate    | Multiplier |
+| ---------- | -------- | ------------ | --------- | ---------- |
+| 10/01/2024 |   EUR    | Regular Cash |  1.1076   |     1      |
+| 09/30/2024 |   AUD    | Travel Cash  |  0.693083 |     1      |
+| 09/15/2025 |   EUR    | Regular Cash |  1.1012   |     1      |
+| 09/10/2024 |   AUD    | Travel Cash  |  0.674169 |     1      |
 
+> [!NOTE]  
+> The multiplier field may not be necessary, but [rmillian/multi-currency](https://ynab.rmillan.com/plugins/multi-currency) uses the multiplier field and some currencies have a high exchange rate. (1 Euro = 4,030.86 Ugandan Shilling)
 
 <br/><br/>
 ## Next Steps
