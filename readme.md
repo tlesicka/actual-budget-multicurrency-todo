@@ -81,7 +81,23 @@ The FX Rate Page should list the FX rates by date and be able to sort/filter by 
 
 <br/><br/>
 ## Next Steps
-### Step 1 - Add Currency Support
+### Step 1 - Duplicate and Snapshot Budget File
+a) Add ```export function duplicateBudget(snapshot?: boolean)``` to packages/loot-core/src/client/actions/budgets.ts
+- If ```snapshots === false``` duplicate budget will be titled "{Current Budget Name} - copy"
+- If ```snapshots === true``` duplicate budget will be titled "{Current Budget Name} - {datetime}"
+- ```duplicateBudget()``` may also need to be passed the budget id to duplicate.
+
+b) Add a "Duplicate" button to the menu on the Files/Budget List screen.
+
+![duplicate button added to files screen](assets/files-budget-list.jpg)
+
+c) Add "Create Snapshot" to the budget menu.
+
+![create snapshot menu item added to main menu](assets/menu-create-snapshot.jpg)
+
+d) Other accessibility features would be great, but this is the basics.
+
+### Step 2 - Add Currency Support
 
 Actual Budget currently does not use any specific currency.  Currently, all transaction amounts are stored in the SQLite database as an Integer using a minor unit of 2.  This means that before the amount is stored it is multiplied by 100 ($123.45 is stored as 12345).  This works for 255 of the 264 currencies listed in ISO 4217, but does not work for all currencies. <br/>
 #### Currency Minor Units (from ISO 4217)
@@ -127,7 +143,7 @@ Structure for Currency Information Object:
 },
 ```
 
-#### Step 1 - Todo
+#### Step 2 - Todo
 1) Create Currency class that stores:<br/>
    a list of currencies as defined above;<br/>
    lookup functions such as:
@@ -145,9 +161,9 @@ Structure for Currency Information Object:
 
 [Discord Discussion](https://discord.com/channels/937901803608096828/1224674202083393597/1290451173433675889)
 
-### Step 2 - FX rate Table
+### Step 3 - FX rate Table
 For now, the FX rate table will be manual entry only.  In the future automatic lookup can be figured out, but stay simple for the beginning.  Transfer transactions can trigger an automatic entry into the FX rate table, but regular purchase will not.
-#### Step 2 - Todo
+#### Step 3 - Todo
 1) Create new table in SQLite that would include the following fields:
    ```
    date:              // same date format currently use in other tables
