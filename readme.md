@@ -82,6 +82,11 @@ The FX Rate Page should list the FX rates by date and be able to sort/filter by 
 <br/><br/>
 ## Next Steps
 ### Step 1 - Duplicate and Snapshot Budget File
+![Status: In-Progress](https://img.shields.io/badge/status-In_Progress-yellow)
+- Pull Request: https://github.com/actualbudget/actual/pull/3689
+- Preview: https://deploy-preview-3689.demo.actualbudget.org
+<br/><br/>
+
 a) Add ```export function duplicateBudget(snapshot?: boolean)``` to packages/loot-core/src/client/actions/budgets.ts
 - If ```snapshots === false``` duplicate budget will be titled "{Current Budget Name} - copy"
 - If ```snapshots === true``` duplicate budget will be titled "{Current Budget Name} - {datetime}"
@@ -98,6 +103,8 @@ c) Add "Create Snapshot" to the budget menu.
 d) Other accessibility features would be great, but this is the basics.
 
 ### Step 2 - Add Currency Support
+![Status: To Do](https://img.shields.io/badge/status-To_Do-purple)
+<br/><br/>
 
 Actual Budget currently does not use any specific currency.  Currently, all transaction amounts are stored in the SQLite database as an Integer using a minor unit of 2.  This means that before the amount is stored it is multiplied by 100 ($123.45 is stored as 12345).  This works for 255 of the 264 currencies listed in ISO 4217, but does not work for all currencies. <br/>
 #### Currency Minor Units (from ISO 4217)
@@ -162,6 +169,9 @@ Structure for Currency Information Object:
 [Discord Discussion](https://discord.com/channels/937901803608096828/1224674202083393597/1290451173433675889)
 
 ### Step 3 - FX rate Table
+![Status: To Do](https://img.shields.io/badge/status-To_Do-purple)
+<br/><br/>
+
 For now, the FX rate table will be manual entry only.  In the future automatic lookup can be figured out, but stay simple for the beginning.  Transfer transactions can trigger an automatic entry into the FX rate table, but regular purchase will not.
 #### Step 3 - Todo
 1) Create new table in SQLite that would include the following fields:
