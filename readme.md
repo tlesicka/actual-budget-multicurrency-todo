@@ -83,8 +83,8 @@ The FX Rate Page should list the FX rates by date and be able to sort/filter by 
 ## Next Steps
 ### Step 1 - Duplicate and Snapshot Budget File
 ![Status: In-Progress](https://img.shields.io/badge/status-In_Progress-yellow)
-- Pull Request: https://github.com/actualbudget/actual/pull/3689
-- Preview: https://deploy-preview-3689.demo.actualbudget.org
+- Pull Request: https://github.com/actualbudget/actual/pull/3847
+- Preview: https://deploy-preview-3847.demo.actualbudget.org
 <br/><br/>
 
 a) Add ```export function duplicateBudget(snapshot?: boolean)``` to packages/loot-core/src/client/actions/budgets.ts
