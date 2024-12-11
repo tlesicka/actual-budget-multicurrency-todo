@@ -81,29 +81,16 @@ The FX Rate Page should list the FX rates by date and be able to sort/filter by 
 
 <br/><br/>
 ## Next Steps
-### Step 1 - Duplicate and Snapshot Budget File
-![Status: In-Progress](https://img.shields.io/badge/status-In_Progress-yellow)
+### Step 1 - Duplicate ~~and Snapshot Budget~~ File
+![Status: Completed](https://img.shields.io/badge/status-Completed/Merged-brightgreen)
 - Pull Request: https://github.com/actualbudget/actual/pull/3847
 - Preview: https://deploy-preview-3847.demo.actualbudget.org
 <br/><br/>
 
-a) Add ```export function duplicateBudget(snapshot?: boolean)``` to packages/loot-core/src/client/actions/budgets.ts
-- If ```snapshots === false``` duplicate budget will be titled "{Current Budget Name} - copy"
-- If ```snapshots === true``` duplicate budget will be titled "{Current Budget Name} - {datetime}"
-- ```duplicateBudget()``` may also need to be passed the budget id to duplicate.
-
-b) Add a "Duplicate" button to the menu on the Files/Budget List screen.
-
-![duplicate button added to files screen](assets/files-budget-list.jpg)
-
-c) Add "Create Snapshot" to the budget menu.
-
-![create snapshot menu item added to main menu](assets/menu-create-snapshot.jpg)
-
-d) Other accessibility features would be great, but this is the basics.
-
 ### Step 2 - Add Currency Support
-![Status: To Do](https://img.shields.io/badge/status-To_Do-purple)
+![Status: In-Progress](https://img.shields.io/badge/status-In_Progress-yellow)
+- Pull Request: Private Repository
+- Preview:
 <br/><br/>
 
 Actual Budget currently does not use any specific currency.  Currently, all transaction amounts are stored in the SQLite database as an Integer using a minor unit of 2.  This means that before the amount is stored it is multiplied by 100 ($123.45 is stored as 12345).  This works for 255 of the 264 currencies listed in ISO 4217, but does not work for all currencies. <br/>
