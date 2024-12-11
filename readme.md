@@ -103,59 +103,60 @@ Actual Budget currently does not use any specific currency.  Currently, all tran
 ISO 4217 can be downloaded as an XML file from :<br/>
 https://www.iso.org/iso-4217-currency-codes.html <br/>
 [list-one.xml](list-one.xml) was downloaded from iso.org.<br/>
-The XML file is organized by country name.  AB will need to turn this XML file organized by country name to a JS Object organized by currency code (UNITED STATES OF AMERICA (THE) -> USD or AUSTRIA -> EUR).<br/>
-[Example JSON/JS Object](iso4217_currencies.json)<br/>
+The XML file is organized by country name.  AB will need to turn this XML file organized by country name to a JS Objects organized by currency code (UNITED STATES OF AMERICA (THE) -> USD or AUSTRIA -> EUR).<br/>
+[Example Currency Objects](currencies/iso4217/)<br/>
 ISO 4217 does not include currency symbols.  Current list of symbols can be found at:
 - https://www.xe.com/symbols/
 - https://en.wikipedia.org/wiki/Currency_symbol#List_of_currency_symbols_currently_in_use
 
-[currency_symbols.json](currency_symbols.json) was extracted from xe.com/symbols
+[currency_symbols.csv](currency_symbols.csv) was extracted from xe.com/symbols
 
-Structure for Currency Information Object:
+Structure for Currency Object:
 ```
 {
-  code: {                         // "AFN"
-    "name": string,               // "Afghani"
-    "number": number,             // 971
-    "minorUnits": number,         // 2
-    "symbol": string,             // "؋"
-    "country": Array(string),     // [ "AFGHANISTAN" ]
-  },
+  code: string                // "AFN"
+  name: string,               // "Afghani"
+  number: number,             // 971
+  minorUnits: number,         // 2
+  symbol: string,             // "؋"
+  country: Array<string>,     // [ "AFGHANISTAN" ]
 }
 ```
-[Example: (iso4217_currencies.json)](iso4217_currencies.json)
+[Example: (currencies/iso4217/INR.ts)](currencies/iso4217/INR.ts)
 ```
-"INR": {
-  "name": "Indian Rupee",
-  "number": 356,
-  "minorUnits": 2,
-  "symbol": "₹",
-  "countries": [
-    "BHUTAN",
-    "INDIA"
-  ],
-},
+export const INR: Currency = {
+  code: 'INR',
+  name: 'Indian Rupee',
+  number: 356,
+  minorUnits: 2,
+  countries: ['BHUTAN', 'INDIA'],
+};
 ```
 
 #### Step 2 - Todo
-1) Create Currency class that stores:<br/>
-   a list of currencies as defined above;<br/>
-   lookup functions such as:
-   ```
-   getCurrency(currencyCode): Currency
-   Currency.getMinorUnit(): number
-   Currency.getSymbol(): string
-   ```
-2) Read iso4217.json into Currency class 
-3) Add {```currency: string```} field to AB global settings as the base budget currency.  Add currency selection to Settings page for a one-time setting of currency.
-> [!WARNING]
-> Changing a base currency would require a conversion to the new currency and is beyond the current scope of the project. This may be a future feature, but not initial.  Once the base currency is set, the settings should be grayed out and only display the base currency.
-5) Convert AB's current fixed minor units to minor unit based on selected currency.
-6) Possibly add option to view currency symbols.
+1. - [X] Create Currency type and list of currencies
+2. - [X] Create lookup functions such as:
+     ```
+     getCurrency(currencyCode): Currency
+     getCurrencyList(list?: 'iso4217' | 'crypto'): Array<Currency>
+     ```
+3. - [X] Create MonetaryUnit class to hold currency value
+4. - [ ] Implement MonetaryUnit: Convert AB's current fixed minor units to minor unit based on selected currency (which could also be no currency).
 
 [Discord Discussion](https://discord.com/channels/937901803608096828/1224674202083393597/1290451173433675889)
 
-### Step 3 - FX rate Table
+### Step 3 - Implement Currency Support
+![Status: To Do](https://img.shields.io/badge/status-To_Do-purple)
+<br/><br/>
+
+#### Step 3 - Todo
+1. - [ ] Add {```currency: string```} field to AB global settings as the base budget currency.  Add currency selection to Settings page for a one-time setting of currency.
+> [!WARNING]
+> Changing a base currency would require a conversion to the new currency and is beyond the current scope of the project. This may be a future feature, but not initial.  Once the base currency is set, the settings should be grayed out and only display the base currency.
+2. - [ ] Possibly add option to view currency symbols.
+3. - [ ] Add ```currency``` to account and transaction tables
+
+### Step 4 - FX rate Table
 ![Status: To Do](https://img.shields.io/badge/status-To_Do-purple)
 <br/><br/>
 

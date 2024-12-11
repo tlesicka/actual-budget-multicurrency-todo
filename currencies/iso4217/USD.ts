@@ -1,0 +1,30 @@
+import { type Currency } from '../../../../types/currency';
+
+export const USD: Currency = {
+  code: 'USD',
+  name: 'US Dollar',
+  number: 840,
+  minorUnits: 2,
+  symbol: '$',
+  countries: [
+    'AMERICAN SAMOA',
+    'BONAIRE, SINT EUSTATIUS AND SABA',
+    'BRITISH INDIAN OCEAN TERRITORY (THE)',
+    'ECUADOR',
+    'EL SALVADOR',
+    'GUAM',
+    'HAITI',
+    'MARSHALL ISLANDS (THE)',
+    'MICRONESIA (FEDERATED STATES OF)',
+    'NORTHERN MARIANA ISLANDS (THE)',
+    'PALAU',
+    'PANAMA',
+    'PUERTO RICO',
+    'TIMOR-LESTE',
+    'TURKS AND CAICOS ISLANDS (THE)',
+    'UNITED STATES MINOR OUTLYING ISLANDS (THE)',
+    'UNITED STATES OF AMERICA (THE)',
+    'VIRGIN ISLANDS (BRITISH)',
+    'VIRGIN ISLANDS (U.S.)',
+  ],
+};

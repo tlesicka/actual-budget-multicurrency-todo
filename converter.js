@@ -1,4 +1,4 @@
-const { readFile } = require('node:fs/promises');
+const fs = require('node:fs/promises');
 const { resolve } = require('node:path');
 const xml2js = require('xml2js');
 
@@ -17,7 +17,7 @@ function getName(ccynm) {
 async function readXML() {
   try {
     const filePath = resolve('./list-one.xml');
-    const contents = await readFile(filePath, { encoding: 'utf8' });
+    const contents = await fs.readFile(filePath, { encoding: 'utf8' });
     var countries = [];
     parser.parseString(contents, (err, result) => {
       if(err) {
@@ -34,7 +34,7 @@ async function readXML() {
 
 async function readSymbols() {
   const filePath = resolve('./currency_symbols.csv');
-  const contents = await readFile(filePath, { encoding: 'utf8' });
+  const contents = await fs.readFile(filePath, { encoding: 'utf8' });
   var symbols = {};
   var lines = contents.split('\n');
   lines.forEach((line, index) => {
@@ -44,6 +44,37 @@ async function readSymbols() {
     symbols[sym[0]] = sym[1];
   });
   return symbols;
+}
+
+async function directoryExists(path) {
+  try {
+    await fs.stat(path);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
+
+async function writeCurrencyFiles(currencies) {
+  if (!(await directoryExists('currencies'))) {
+    await fs.mkdir('currencies');
+  }
+  if (!(await directoryExists())) {
+    await fs.mkdir('currencies/iso4217');
+  }
+  var indexjs = '';
+  
+  for (var code in currencies) {
+	  var currency = currencies[code];
+	  var fileData = JSON.stringify(currency, null, '  ');
+	  fileData = fileData.replace(/\n\s\s\"/g, '\n  ');
+	  fileData = fileData.replace(/\":\s/g, ': ');
+	  fileData = 'import { type Currency } from \'../../../../types/currency\';\n\n'
+	    + 'export const ' + code + ': Currency = ' + fileData + '\n';
+    await fs.writeFile('./currencies/iso4217/'+code+'.ts', fileData);
+	indexjs += 'export * from \'.\/' + code + '\';\n';
+  }
+  await fs.writeFile('./currencies/iso4217/index.ts', indexjs);
 }
 
 async function run() {
@@ -56,6 +87,7 @@ async function run() {
     if(!country.Ccy) return;
     if(!currencies.hasOwnProperty(country.Ccy)){
       currencies[country.Ccy] = {
+        code: country.Ccy[0],
         name: getName(country.CcyNm[0]),
         number: Number(country.CcyNbr),
         minorUnits: (country.CcyMnrUnts === 'N.A.' ? null : Number(country.CcyMnrUnts)),
@@ -66,7 +98,8 @@ async function run() {
       currencies[country.Ccy].countries.push(country.CtryNm[0]);
     }
   });
-  console.log(JSON.stringify(currencies, null, '  '));
+
+  await writeCurrencyFiles(currencies);
 }
 
 run();
