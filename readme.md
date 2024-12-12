@@ -81,7 +81,7 @@ The FX Rate Page should list the FX rates by date and be able to sort/filter by 
 
 <br/><br/>
 ## Next Steps
-### Step 1 - Duplicate ~~and Snapshot Budget~~ File
+### Step 1 - Duplicate ~~and Snapshot~~ Budget File
 ![Status: Completed](https://img.shields.io/badge/status-Completed/Merged-brightgreen)
 - Pull Request: https://github.com/actualbudget/actual/pull/3847
 - Preview: https://deploy-preview-3847.demo.actualbudget.org
