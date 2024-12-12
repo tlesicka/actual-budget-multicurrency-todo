@@ -3,6 +3,8 @@ Notes and Discussion points for adding Multi-Currency to Actual Budget
 
 [Discord - #Ideas - Support for Multi Currency Budget](https://discord.com/channels/937901803608096828/1224674202083393597)
 
+[How to use multi-currency in Actual Budget until it is officially released](multi-currency.md)
+
 ## User Interface
 
 > [!NOTE]  
